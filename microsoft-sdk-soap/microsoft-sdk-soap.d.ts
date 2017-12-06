@@ -2968,3 +2968,157 @@ declare namespace Sdk.Mdq
 
 declare namespace Sdk.Mdq.ValueEnums
 { }
+
+declare namespace Sdk.Sync {
+    /**
+     * Create a link between records.
+     * @param entityName The logical name of the entity that is specified in the entityId parameter.
+     * @param entityId The ID of the record to which the related records are associated.
+     * @param relationship The name of the relationship to be used to create the link.
+     * @param relatedEntities A collection of EntityReference objects to be associated.
+     */
+    function associate(entityName: string, entityId: string, relationship: string, relatedEntities: EntityReferenceCollection): void;
+    /**
+     * Creates an entity record.
+     * @param entity An entity instance.
+     */
+    function create(entity: Entity): string;
+    /**
+     * Deletes an entity record.
+     * @param entityName The logical name of the entity to be deleted.
+     * @param id An ID of the record to be deleted.
+     */
+    function del(entityName: string, id: string): void;
+    /**
+     * Removes a link between records.
+     * @param entityName The logical name of the entity that is specified in the entityId parameter.
+     * @param entityId The ID of the record to which the related records are disassociated.
+     * @param relationship The name of the relationship to be used to remove the link.
+     * @param relatedEntities A collection of EntityReference objects to be disassociated.
+     */
+    function disassociate(entityName: string, entityId: string, relationship: string, relatedEntities: EntityReferenceCollection): void;
+    /**
+     * Executes a SOAP Request using the SOAPAction Execute.
+     * @param request A request object.
+     */
+    function execute(request: OrganizationRequest): OrganizationResponse;
+    /**
+     * Retrieves an entity instance.
+     * @param entityName The logical name of the entity to retrieve.
+     * @param id The id of the entity to retrieve.
+     * @param columnset The columns of the entity to retrieve.
+     */
+    function retrieve(entityName: string, id: string, columnset: ColumnSet): Entity;
+    /**
+     * Retrieves the results of a query.
+     * @param query The query to be used for the search.
+     */
+    function retrieveMultiple(query: Query.QueryExpression): EntityCollection;
+    /**
+     * Retrieves the results of a query.
+     * @param query The query to be used for the search.
+     */
+    function retrieveMultiple(query: Query.QueryByAttribute): EntityCollection;
+    /**
+     * Retrieves the results of a query.
+     * @param query The query to be used for the search.
+     */
+    function retrieveMultiple(query: Query.FetchExpression): EntityCollection;
+    /**
+     * Updates an entity instance.
+     * @param entity An entity instance to update.
+     */
+    function update(entity: Entity): boolean;
+}
+
+declare namespace Sdk.Async {
+    /**
+     * Create a link between records.
+     * @param entityName The logical name of the entity that is specified in the entityId parameter.
+     * @param entityId The ID of the record to which the related records are associated.
+     * @param relationship The name of the relationship to be used to create the link.
+     * @param relatedEntities A collection of EntityReference objects to be associated.
+     * @param successCallBack The function to call if the operation is successful. No parameter is passed.
+     * @param errorCallBack The function to call if the operation is unsuccessful.
+     * @param passThruObj An optional parameter to pass through as the last parameter to success and error callbacks.
+     */
+    function associate(entityName: string, entityId: string, relationship: string, relatedEntities: EntityReferenceCollection, successCallBack?: (passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Creates an entity record.
+     * @param entity An entity instance.
+     * @param successCallBack The function to call if the operation is successful. First parameter is a string representation of a GUID value.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function create(entity: Entity, successCallBack?: (id: string, passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Deletes an entity record.
+     * @param entityName The logical name of the entity to be deleted.
+     * @param id An ID of the record to be deleted.
+     * @param successCallBack The function to call if the operation is successful.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function del(entityName: string, id: string, successCallBack?: (passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Removes a link between records.
+     * @param entityName The logical name of the entity that is specified in the entityId parameter.
+     * @param entityId The ID of the record to which the related records are disassociated.
+     * @param relationship The name of the relationship to be used to remove the link.
+     * @param relatedEntities A collection of EntityReference objects to be disassociated.
+     * @param successCallBack The function to call if the operation is successful.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function disassociate(entityName: string, entityId: string, relationship: string, relatedEntities: EntityReferenceCollection, successCallBack?: (passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Executes a SOAP request using the SOAPAction Execute.
+     * @param request A request object.
+     * @param successCallBack The function to call if the operation is successful. First parameter is the response.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function execute(request: OrganizationRequest, successCallBack?: (response: OrganizationResponse, passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Retrieves an entity instance.
+     * @param entityName The logical name of the entity to retrieve.
+     * @param id The id of the entity to retrieve.
+     * @param columnset The columns of the entity to retrieve.
+     * @param successCallBack The function to call if the operation is successful. First parameter is the entity record retrieved.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function retrieve(entityName: string, id: string, columnset: ColumnSet, successCallBack: (entity: Entity, passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Retrieves the results of a query.
+     * @param query The query to be used for the search.
+     * @param successCallBack The function to call if the operation is successful. First parameter is the EntityCollection retrieved.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function retrieveMultiple(query: Query.QueryExpression, successCallBack?: (ec: EntityCollection, passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Retrieves the results of a query.
+     * @param query The query to be used for the search.
+     * @param successCallBack The function to call if the operation is successful. First parameter is the EntityCollection retrieved.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function retrieveMultiple(query: Query.QueryByAttribute, successCallBack?: (ec: EntityCollection, passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Retrieves the results of a query.
+     * @param query The query to be used for the search.
+     * @param successCallBack The function to call if the operation is successful. First parameter is the EntityCollection retrieved.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function retrieveMultiple(query: Query.FetchExpression, successCallBack?: (ec: EntityCollection, passThruObj: object) => void, errorCallBack?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+    /**
+     * Updates an entity instance.
+     * @param entity An entity instance to update.
+     * @param successCallBack The function to call if the operation is successful. First parameter indicates whether there were changed fields that was saved.
+     * @param errorCallBack The function to call if the operation is unsuccesful. First parameter is the error message.
+     * @param passThruObj An optional parameter to pass through to the success and error callbacks as the last parameter.
+     */
+    function update(entity: Entity, successCallback?: (success: boolean, passThruObj: object) => void, errorCallback?: (error: string, passThruObj: object) => void, passThruObj?: object): void;
+}
